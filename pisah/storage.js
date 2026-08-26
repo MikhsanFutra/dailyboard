@@ -1,10 +1,1 @@
-// Fase 3 -> LocalStorage & Fitur Catatan
-// Minggu 7 - Local Storage
-export function simpanKeStorage(list) {
-  localStorage.setItem("daftarTugas", JSON.stringify(list));
-}
-
-export function muatDariStorage() {
-  const data = localStorage.getItem("daftarTugas");
-  return data ? JSON.parse(data) : [];
-}
+export function initCatatan(t,a){const e=document.createElement("h3");e.textContent="Section Catatan";const n=document.createElement("textarea");n.placeholder="Tulis catatan di sini...";const i=document.createElement("button");i.textContent="Tambah Catatan";const c=document.createElement("div");c.id="daftar-catatan",t.append(e,n,i,c);let o=[];function l(){localStorage.setItem("daftarCatatan",JSON.stringify(o))}function r(){const t=document.getElementById("daftar-catatan");t.innerHTML="",o.forEach(e=>{const n=document.createElement("div");n.className="catatan-item",n.innerHTML=`\n        <p>${e.isi}</p>\n        <small>${e.tanggal}</small>\n        <button class="btn-hapus">Hapus</button>\n      `,n.querySelector("p").addEventListener("dblclick",()=>{const t=prompt("Edit catatan:",e.isi);null!==t&&function(t,e){a(e)&&(o=o.map(a=>a.id===t?{...a,isi:e.trim()}:a),l(),r())}(e.id,t)}),n.querySelector(".btn-hapus").addEventListener("click",()=>{var t;t=e.id,o=o.filter(a=>a.id!==t),l(),r()}),t.appendChild(n)})}i.addEventListener("click",()=>{const t=n.value.trim();var e;a(t)&&(e=t.trim(),o.push({id:Date.now(),isi:e,tanggal:(new Date).toLocaleDateString("id-ID")}),l(),r(),n.value="")}),function(){const t=localStorage.getItem("daftarCatatan");o=t?JSON.parse(t):[]}(),r()}
